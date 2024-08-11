@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seekers</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        background-color: var(--navbar-color);
+      }
+
+      .navbar-dark .navbar-nav .nav-link {
+        color: var(--navbar-text-color);
+        transition: color 0.3s;
+      }
+
+      .navbar-dark .navbar-nav .nav-link:hover {
+        color: var(--navbar-hover-color);
+      }
+
+
+      .navbar-brand {
+        font-weight: bolder;
+        text-shadow: 0.2px 0.5px 2px rgba(255, 255, 255, 0.7);
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        font-size: 30px;
+        transition: color 0.3s, text-shadow 0.3s;
+      }
+
+      .light-theme .navbar-brand {
+        color: #9a8e07;
+        text-shadow: 0.2px 0.5px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .light-theme .navbar-brand:hover {
+        color: #232506;
+        text-shadow: 0.2px 0.5px 2px rgba(0, 0, 0, 0.3);
+      }
+      :root {
+        --background-color: #32322f;
+        --text-color: #f5f5f5;
+        --navbar-color: #9f9d34;
+        --navbar-text-color: #ffffff;
+        --navbar-hover-color: #b0b0b0;
+        --column-background-color: #3a3a3a;
+        --main-content-background-color: #4a4a4a;
+        --column-inner-background-color: #575757;
+        --heading-color: #eaff00;
+      }
+
+      .light-theme {
+        --background-color: #f0f0f0;
+        --text-color: #302d2d;
+        --navbar-color: #ffffff;
+        --navbar-text-color: #302d2d;
+        --navbar-hover-color: #606060;
+        --column-background-color: #e0e0e0;
+        --main-content-background-color: #d0d0d0;
+        --column-inner-background-color: #ffffff;
+        --heading-color: #617200;
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 45px;
+        height: 25px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 17px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #c5d309;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(20px);
+      }
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: var(--main-content-background-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+      h1 {
+        color: var(--heading-color);
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      .card {
+        background-color: var(--column-background-color); 
+        border: 1px solid var(--navbar-color); 
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: calc(100% - 40px);
+        max-width: 300px;
+        padding: 20px;
+        box-sizing: border-box;
+        transition: box-shadow 0.3s;
+      }
+      .card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .card h2 {
+        margin: 0 0 10px;
+        color: var(--heading-color); /* Dark blue color for card titles */
+      }
+      .card p {
+        margin: 0 0 20px;
+        color: var(--text-color); 
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: var(--text-color); 
+        background-color: var(--column-inner-background-color);
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .btn:hover {
+        background-color: #bd7f02; /* Darker blue on hover */
+      }
+      @media (max-width: 768px) {
+        .card {
+          width: calc(100% - 20px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Suraksh</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span
+            class="navbar-toggler-icon"
+            style="
+              background-color: rgb(235, 213, 23);
+              padding: 12px;
+              border-radius: 10px;
+            "
+          ></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'histdata' %}"
+                >Historical Data</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'seekers' %}">Help Others</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'map' %}">Map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <label class="toggle-switch mb-0">
+                <input type="checkbox" id="theme-toggle" />
+                <span class="slider"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <h1>Help Seekers</h1>
+      <div class="card-container">
+        {% for seeker in seekers_list %}
+        <div class="card">
+          <h2>{{ seeker.name }}</h2>
+          <p>{{ seeker.purpose }}</p>
+          <a href="{% url 'give_help' seeker.pk %}" class="btn">Help Them</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script>
+      // Check for saved theme preference in localStorage
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme) {
+        document.body.classList.add(currentTheme);
+        if (currentTheme === "light-theme") {
+          document.getElementById("theme-toggle").checked = true;
+        }
+      }
+
+      // Toggle theme button
+      const themeToggleButton = document.getElementById("theme-toggle");
+      themeToggleButton.addEventListener("change", function () {
+        document.body.classList.toggle("light-theme");
+
+        // Save the current theme preference to localStorage
+        if (document.body.classList.contains("light-theme")) {
+          localStorage.setItem("theme", "light-theme");
+        } else {
+          localStorage.removeItem("theme");
+        }
+      });
+    </script>
+  </body>
+</html>

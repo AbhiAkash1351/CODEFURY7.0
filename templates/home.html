@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        overflow-y: hidden;
+        flex-direction: column;
+      }
+
+      header {
+        background-color: var(--navbar-color);
+      }
+
+      .navbar-dark .navbar-nav .nav-link {
+        color: var(--navbar-text-color);
+        transition: color 0.3s;
+      }
+
+      .navbar-dark .navbar-nav .nav-link:hover {
+        color: var(--navbar-hover-color);
+      }
+
+      {% comment %} .navbar-nav {
+        align-items: center;
+      } {% endcomment %}
+
+      .navbar-brand {
+        font-weight: bolder;
+        text-shadow: 0.2px 0.5px 2px rgba(255, 255, 255, 0.7);
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        font-size: 30px;
+        transition: color 0.3s, text-shadow 0.3s;
+      }
+
+      .light-theme .navbar-brand {
+        color: #9a8e07;
+        text-shadow: 0.2px 0.5px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .light-theme .navbar-brand:hover {
+        color: #232506;
+        text-shadow: 0.2px 0.5px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+      }
+
+      .column {
+        padding: 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .left-column column-content {
+        overflow-y: auto;
+        max-height: 600px;
+      }
+
+      .left-column,
+      .right-column {
+        width: 20%;
+        background-color: var(--column-background-color);
+      }
+
+      .chead {
+        font-size: 1.5rem;
+        font-weight: bolder;
+        color: var(--heading-color);
+      }
+
+      .right-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .right1-column-content {
+        margin-bottom: 10px;
+        height: 70%;
+        background-color: var(--column-inner-background-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        padding: 20px;
+        box-sizing: border-box;
+        width: 100%;
+        background-position: relative;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      .right2-column-content {
+        margin-bottom: 10px;
+        height: 30%;
+        background-color: var(--column-inner-background-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        padding: 20px;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      .btns {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .btns a {
+        margin: 10px;
+      }
+
+      .middle-column {
+        padding: 0px;
+        width: 60%;
+        background-color: var(--main-content-background-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        height: calc(100vh - 110px);
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .column-content {
+        width: 100%;
+        height: 100%;
+        background-color: var(--column-inner-background-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        padding: 20px;
+        box-sizing: border-box;
+        padding-left: 34px;
+      }
+
+      .heading {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 20px;
+        color: var(--heading-color);
+      }
+
+      :root {
+        --background-color: #32322f;
+        --text-color: #f5f5f5;
+        --navbar-color: #9f9d34;
+        --navbar-text-color: #ffffff;
+        --navbar-hover-color: #b0b0b0;
+        --column-background-color: #3a3a3a;
+        --main-content-background-color: #4a4a4a;
+        --column-inner-background-color: #575757;
+        --heading-color: #eaff00;
+      }
+
+      .light-theme {
+        --background-color: #f0f0f0;
+        --text-color: #302d2d;
+        --navbar-color: #ffffff;
+        --navbar-text-color: #302d2d;
+        --navbar-hover-color: #606060;
+        --column-background-color: #e0e0e0;
+        --main-content-background-color: #d0d0d0;
+        --column-inner-background-color: #ffffff;
+        --heading-color: #617200;
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 45px;
+        height: 25px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 17px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #c5d309;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(20px);
+      }
+
+      @media (max-width: 992px) {
+        .left-column,
+        .right-column {
+          width: 25%;
+        }
+
+        body {
+          overflow-y: auto;
+        }
+
+        .middle-column {
+          width: 50%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        main {
+          flex-direction: column;
+        }
+
+        .right2-column-contentP {
+          display: flex;
+          flex-direction: row;
+        }
+
+        .right1-column-content {
+          margin-bottom: 10px;
+          height: 60%;
+          background-color: var(--column-inner-background-color);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          border-radius: 10px;
+          padding: 20px;
+          box-sizing: border-box;
+          width: 100%;
+          background-position: relative;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+
+        .right2-column-content {
+          height: 36%;
+        }
+
+        body {
+          overflow-y: auto;
+        }
+
+        .left-column,
+        .right-column {
+          width: 100%;
+          display: flex;
+        }
+
+        .left-column,
+        .middle-column,
+        .right-column {
+          height: auto;
+        }
+        .middle-column {
+          width: 100%;
+          height: 300px;
+          overflow-y: auto;
+          overflow-x: fixed;
+        }
+
+        .left-column column-content {
+          overflow-y: auto;
+          max-height: 200px;
+        }
+      }
+
+      .community-item {
+        display: block;
+        width: 90%;
+        margin: 10px 0;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        background-color: var(--heading-color);
+        color: var(--main-content-background-color);
+        text-align: center;
+        transition: transform 0.3s ease, background-color 0.3s ease,
+          box-shadow 3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .community-item:hover {
+        transform: scale(1.05);
+        background-color: #aeb024;
+        color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .community-item::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 10px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: linear-gradient(
+          45deg,
+          rgba(155, 181, 8, 0.5),
+          rgba(246, 255, 0, 0.5),
+          rgba(120, 133, 6, 0.5)
+        );
+        z-index: 100;
+      }
+
+      .community-item:hover::after {
+        opacity: 1;
+      }
+
+      .right1-column-content {
+        position: relative;
+        padding-bottom: 50px; /* space for the button */
+      }
+      .container {
+        text-align: center;
+      }
+      .centered1 {
+        font-size: 1.5em;
+        position: absolute;
+        top: 24%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: aqua;
+        text-shadow: red 1px 1px 4px;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+      .centered2 {
+        font-size: 1.5em;
+        position: absolute;
+        top: 46%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgb(255, 213, 0);
+        text-shadow: red 1px 1px 4px;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+      .BG {
+        margin-top: 10px;
+        border-radius: 10px;
+      }
+
+      .sub-div1 {
+        flex: 1 1 calc(25% - 20px); /* Adjusts the width to be 25% minus the gap */
+        box-sizing: border-box;
+        background-color: var(--column-background-color);
+        border-radius: 8px;
+        text-align: center;
+      }
+      .mss {
+        width: 100%;
+        padding: 20px;
+        background-color:var(--column-inner-background-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        color: var(--text-color);
+        gap: 20px;
+      }
+      @media (max-width: 768px) {
+        .sub-div {
+          flex: 1 1 calc(50% - 20px); /* 2 columns layout on medium screens */
+        }
+      }
+      @media (max-width: 480px) {
+        .sub-div {
+          flex: 1 1 100%; /* 1 column layout on small screens */
+        }
+        .centered1 h1 {
+          font-size: 20px;
+          position: relative;
+          margin-top: -10px;
+        }
+        .centered2 h5 {
+          font-size: 10px;
+          position: relative;
+          margin-top: -20px;
+        }
+      }
+
+      /* Style for the floating chatbot icon */
+      #chatbot-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        z-index: 1000;
+      }
+
+      #chatbot-icon img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+
+      /* Style for the chatbot container */
+      #chatbot-container {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 300px;
+        height: 400px;
+        background-color: var(--background-color);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: none; /* Initially hidden */
+        z-index: 1001;
+        overflow: hidden;
+        flex-direction: column;
+        color: var(--text-color);
+      }
+
+      .chat-header {
+        background-color: var(--navbar-color);
+        color: var(--navbar-text-color);
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #close-chatbot {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .chat-box {
+        flex-grow: 1;
+        padding: 10px;
+        overflow-y: auto;
+        background-color: var(--column-inner-background-color);
+      }
+
+      #chat-form {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+      }
+
+      #question {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      #chat-form button {
+        margin-left: 10px;
+        padding: 10px 20px;
+        background-color: var(--background-color);
+        border: none;
+        border-radius: 4px;
+        color: var(--text-color);
+        cursor: pointer;
+      }
+
+      #chat-form button:hover {
+        background-color: var(--navbar-hover-color);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Suraksh</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span
+            class="navbar-toggler-icon"
+            style="
+              background-color: rgb(235, 213, 23);
+              padding: 12px;
+              border-radius: 10px;
+            "
+          ></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'histdata' %}"
+                >Historical Data</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'seekers' %}">Help Others</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'map' %}">Map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://indianhelpline.com/">Contact</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <label class="toggle-switch mb-0">
+                <input type="checkbox" id="theme-toggle" />
+                <span class="slider"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="column left-column">
+        <div class="column-content">
+          <h3 class="chead">Communities</h3>
+          <hr />
+          <div class="community-list">
+            <ul style="list-style-type: none; padding-left: 0; width: 100%">
+              {% for community in communities %}
+              <li>
+                <a
+                  href="{% url 'community_detail' community.pk %}"
+                  style="color: white; text-decoration: none"
+                >
+                  <button class="community-item">
+                    {{ community.name }}
+                  </button></a
+                >
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="column middle-column">
+        <div class="container">
+          <img
+            class="BG"
+            src="https://earthobservations.org/storage/app/resources/resize/2200_0_0_0_auto/img_54001d890d9950bb03c3b469237198d2.webp"
+            alt="BG"
+            style="width: 100%"
+          />
+          <div class="centered1">
+            <h1>Empowering Safety Through Innovation</h1>
+          </div>
+          <div class="centered2">
+            <h5>Swift Solutions for Disaster Preparedness and Response</h5>
+          </div>
+        </div>
+      </div>
+      <div class="column right-column">
+        <div class="right1-column-content">
+          <h2 class="chead">Resources ⭐</h2>
+          <hr />
+
+          <div class="mss">
+            <div class="sub-div1"><a href="">Weather Forecast</a></div>
+            <div class="sub-div1">
+              <a href="https://charantejabs-cherrypy.github.io/DataPlot/"
+                >Disaster Analytics</a
+              >
+            </div>
+            <div class="sub-div1">
+              <a href="{% url 'histdata' %}">Disaster History</a>
+            </div>
+            <div class="sub-div1">
+              <a href="{% url 'educate' %}">Educate Yourself</a>
+            </div>
+          </div>
+        </div>
+        <div class="right2-column-content">
+          <div class="btns">
+            <a href="{% url 'seek_help' %}" class="btn btn-warning"
+              >Seek Help</a
+            >
+            <a href="{% url 'seekers' %}" class="btn btn-info">Help Others</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="chatbot-icon" onclick="toggleChatbot()">
+      <img
+        src="data:image/png;base64,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"
+        alt="Chatbot"
+      />
+    </div>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container">
+      <div class="chat-header">
+        <h3>Chat with Suraksha</h3>
+        <button id="close-chatbot" onclick="toggleChatbot()">×</button>
+      </div>
+      <div class="chat-box" id="chat-box"></div>
+      <form id="chat-form">
+        <input
+          type="text"
+          id="question"
+          placeholder="Ask a question..."
+          required
+        />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Check for saved theme preference in localStorage
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme) {
+        document.body.classList.add(currentTheme);
+        if (currentTheme === "light-theme") {
+          document.getElementById("theme-toggle").checked = true;
+        }
+      }
+
+      // Toggle theme button
+      const themeToggleButton = document.getElementById("theme-toggle");
+      themeToggleButton.addEventListener("change", function () {
+        document.body.classList.toggle("light-theme");
+
+        // Save the current theme preference to localStorage
+        if (document.body.classList.contains("light-theme")) {
+          localStorage.setItem("theme", "light-theme");
+        } else {
+          localStorage.removeItem("theme");
+        }
+      });
+      function toggleChatbot() {
+        const chatbotContainer = document.getElementById("chatbot-container");
+        if (
+          chatbotContainer.style.display === "none" ||
+          chatbotContainer.style.display === ""
+        ) {
+          chatbotContainer.style.display = "flex"; // Show the chatbot container
+        } else {
+          chatbotContainer.style.display = "none"; // Hide the chatbot container
+        }
+      }
+
+      document
+        .getElementById("chat-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const questionInput = document.getElementById("question");
+          const question = questionInput.value;
+
+          // Append the user's question to the chat box
+          appendMessage("You", question);
+
+          // Call the backend API to get the chatbot's response
+          fetch("/chatbot/ask/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRFToken": getCookie("csrftoken"),
+            },
+            body: JSON.stringify({ question: question }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              appendMessage("Suraksha", data.response);
+            })
+            .catch((error) => {
+              appendMessage("Suraksha", "An error occurred: " + error.message);
+            });
+
+          questionInput.value = "";
+        });
+
+      function appendMessage(sender, message) {
+        const chatBox = document.getElementById("chat-box");
+        const messageDiv = document.createElement("div");
+        messageDiv.className = sender === "You" ? "user-msg" : "bot-msg";
+        messageDiv.textContent = `${sender}: ${message}`;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+      }
+
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          const cookies = document.cookie.split(";");
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+    </script>
+  </body>
+</html>

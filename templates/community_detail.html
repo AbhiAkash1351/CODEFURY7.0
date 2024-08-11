@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ community.name }}</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: var(--background-color);
+        color:var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        background-color: var(--navbar-color);
+      }
+
+      .navbar-dark .navbar-nav .nav-link {
+        color: var(--navbar-text-color);
+        transition: color 0.3s;
+      }
+
+      .navbar-dark .navbar-nav .nav-link:hover {
+        color: var(--navbar-hover-color);
+      }
+
+      {% comment %} .navbar-nav {
+        align-items: center;
+      } {% endcomment %}
+
+      .navbar-brand {
+        font-weight: bolder;
+        text-shadow: 0.2px 0.5px 2px rgba(255, 255, 255, 0.7);
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        font-size: 30px;
+        transition: color 0.3s, text-shadow 0.3s;
+      }
+
+      .light-theme .navbar-brand {
+        color: #9a8e07;
+        text-shadow: 0.2px 0.5px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .light-theme .navbar-brand:hover {
+        color: #232506;
+        text-shadow: 0.2px 0.5px 2px rgba(0, 0, 0, 0.3);
+      }
+      :root {
+        --background-color: #32322f;
+        --text-color: #f5f5f5;
+        --navbar-color: #9f9d34;
+        --navbar-text-color: #ffffff;
+        --navbar-hover-color: #b0b0b0;
+        --column-background-color: #3a3a3a;
+        --main-content-background-color: #4a4a4a;
+        --column-inner-background-color: #575757;
+        --heading-color: #eaff00;
+      }
+
+      .light-theme {
+        --background-color: #f0f0f0;
+        --text-color: #302d2d;
+        --navbar-color: #ffffff;
+        --navbar-text-color: #302d2d;
+        --navbar-hover-color: #606060;
+        --column-background-color: #e0e0e0;
+        --main-content-background-color: #d0d0d0;
+        --column-inner-background-color: #ffffff;
+        --heading-color: #617200;
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 45px;
+        height: 25px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 17px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #c5d309;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(20px);
+      }
+      .CI {
+        width: 500px;
+        height:400px;
+        border-radius: 6px;
+        box-shadow: black 0px 0px 10px;
+      }
+      main {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+      }
+
+      aside.details {
+        width: 33.33%;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: var(--background-color);
+        border-right: 1px solid #dee2e6;
+        overflow-y: auto;
+      }
+
+      .details img.logo {
+        width: 386px;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 10px;
+      }
+
+      .chat-container {
+        width: 66.66%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        box-sizing: border-box;
+      }
+
+      #chat-box {
+        flex-grow: 1;
+        padding: 20px;
+        overflow-y: auto;
+        background-color: var(--column-background-color);
+        border-bottom: 1px solid #dee2e6;
+      }
+
+      .chat-message {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: var(--column-inner-background-color);
+      }
+
+      .chat-message p {
+        margin: 0 0 10px 0;
+      }
+
+      .input-bar {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: var(--navbar-color);
+        border-top: 1px solid #dee2e6;
+      }
+
+      .input-bar input[type="text"] {
+        flex-grow: 1;
+        border: none;
+        padding: 10px;
+        border-radius: 20px;
+        margin-right: 10px;
+        background-color: var(--background-color);
+      }
+
+      .input-bar input[type="text"]:focus {
+        outline: none;
+      }
+
+      .input-bar label,
+      .input-bar button {
+        background: none;
+        border: none;
+        margin-right: 10px;
+      }
+
+      .input-bar svg {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        aside.details,
+        .chat-container {
+          width: 100%;
+          height: 50%;
+        }
+
+        .CI {
+          width: 200px;
+          height:200px;
+          border-radius: 6px;
+          box-shadow: black 0px 0px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Suraksh</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span
+            class="navbar-toggler-icon"
+            style="
+              background-color: rgb(235, 213, 23);
+              padding: 12px;
+              border-radius: 10px;
+            "
+          ></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'histdata' %}"
+                >Historical Data</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'seekers' %}">Help Others</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'map' %}">Map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <label class="toggle-switch mb-0">
+                <input type="checkbox" id="theme-toggle" />
+                <span class="slider"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <aside class="details">
+        <h1>{{ community.name }}</h1>
+        <p>{{ community.description }}</p>
+        <img
+          src="{{ community.logo.url }}"
+          alt="{{ community.name }} Logo"
+          class="logo"
+        />
+        {% if user.is_authenticated %} {% if is_member %}
+        <form action="{% url 'leave_community' community.pk %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-block">
+            Leave Community
+          </button>
+        </form>
+        {% else %}
+        <form action="{% url 'join_community' community.pk %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success btn-block">
+            Join Community
+          </button>
+        </form>
+        {% endif %} {% else %}
+        <p>
+          You need to <a href="{% url 'login' %}">login</a> to join or chat in
+          this community.
+        </p>
+        {% endif %}
+      </aside>
+
+      {% if user.is_authenticated and is_member %}
+      <div class="chat-container">
+        <div id="chat-box">
+          <div id="chat">
+            {% for message in chats %}
+            <div class="chat-message">
+              <p>
+                <strong>{{ message.user.username }}:</strong>
+                {{message.content}}
+              </p>
+              {% if message.image %}
+              <img src="{{ message.image.url }}" alt="Chat Image" class="CI" />
+              {% endif %} {% if message.video %}
+              <video src="{{ message.video.url }}" controls></video>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <form
+          id="message-form"
+          class="input-bar"
+          action="{% url 'create_chat_message' community.pk %}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %} {{ chat_form.content }}
+          <!-- Image Upload -->
+          <label for="id_image">
+            <input
+              type="file"
+              name="image"
+              id="id_image"
+              accept="image/*"
+              style="display: none"
+              onchange="handleFileSelect(event, 'image')"
+            />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-6 14l-4-4.99 2.48-2.48L13 13l4-4.99 2.52 2.49L13 17z"
+              />
+            </svg>
+          </label>
+          <!-- Video Upload -->
+          <label for="id_video">
+            <input
+              type="file"
+              name="video"
+              id="id_video"
+              accept="video/*"
+              style="display: none"
+              onchange="handleFileSelect(event, 'video')"
+            />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M17 10.5V7c0-.83-.67-1.5-1.5-1.5h-9C5.67 5.5 5 6.17 5 7v10c0 .83.67 1.5 1.5 1.5h9c.83 0 1.5-.67 1.5-1.5v-3.5l4 4V6.5l-4 4z"
+              />
+            </svg>
+          </label>
+          <!-- Send Button -->
+          <button type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" />
+            </svg>
+          </button>
+        </form>
+      </div>
+      {% endif %}
+    </main>
+
+    <script>
+      function handleFileSelect(event, type) {
+        const file = event.target.files[0];
+        if (file) {
+          alert(`You have selected ${file.name} (${type})`);
+        }
+      }
+    </script>
+    <script>
+      // Check for saved theme preference in localStorage
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme) {
+        document.body.classList.add(currentTheme);
+        if (currentTheme === "light-theme") {
+          document.getElementById("theme-toggle").checked = true;
+        }
+      }
+
+      // Toggle theme button
+      const themeToggleButton = document.getElementById("theme-toggle");
+      themeToggleButton.addEventListener("change", function () {
+        document.body.classList.toggle("light-theme");
+
+        // Save the current theme preference to localStorage
+        if (document.body.classList.contains("light-theme")) {
+          localStorage.setItem("theme", "light-theme");
+        } else {
+          localStorage.removeItem("theme");
+        }
+      });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

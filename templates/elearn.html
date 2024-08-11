@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disaster Management E-Learning</title>
+
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: var(--navbar-color);
+      }
+
+      .navbar-dark .navbar-nav .nav-link {
+        color: var(--navbar-text-color);
+        transition: color 0.3s;
+      }
+
+      .navbar-dark .navbar-nav .nav-link:hover {
+        color: var(--navbar-hover-color);
+      }
+
+      .navbar-brand {
+        font-weight: bolder;
+        text-shadow: 0.2px 0.5px 2px rgba(255, 255, 255, 0.7);
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        font-size: 30px;
+        transition: color 0.3s, text-shadow 0.3s;
+      }
+
+      .light-theme .navbar-brand {
+        color: #9a8e07;
+        text-shadow: 0.2px 0.5px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .light-theme .navbar-brand:hover {
+        color: #232506;
+        text-shadow: 0.2px 0.5px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      :root {
+        --background-color: #32322f;
+        --text-color: #f5f5f5;
+        --navbar-color: #9f9d34;
+        --navbar-text-color: #ffffff;
+        --navbar-hover-color: #b0b0b0;
+        --column-background-color: #3a3a3a;
+        --main-content-background-color: #4a4a4a;
+        --column-inner-background-color: #575757;
+        --heading-color: #eaff00;
+      }
+
+      .light-theme {
+        --background-color: #f0f0f0;
+        --text-color: #302d2d;
+        --navbar-color: #ffffff;
+        --navbar-text-color: #302d2d;
+        --navbar-hover-color: #606060;
+        --column-background-color: #e0e0e0;
+        --main-content-background-color: #d0d0d0;
+        --column-inner-background-color: #ffffff;
+        --heading-color: #617200;
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 45px;
+        height: 25px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 17px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #c5d309;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(20px);
+      }
+
+      .h1 {
+        color: var(--heading-color);
+        text-align: center;
+        font-weight: bolder;
+        font-style: inherit;
+        font-family: Arial, Helvetica, sans-serif;
+        padding-top: 15px;
+        font-size: 3vh;
+      }
+
+      .h2 {
+        color: var(--navbar-color);
+        text-align: center;
+        font-weight: 700;
+      }
+
+      main {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--text-color);
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+        background: var(--column-background-color);
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 1200px;
+      }
+
+      section h2 a {
+        color: var(--navbar-color);
+        text-decoration: none;
+      }
+
+      section h2 a:hover {
+        color: rgb(153, 72, 13);
+        text-decoration: underline;
+      }
+
+      #landslides img,
+      #hurricanes img,
+      #earthquakes img,
+      #wildfires img,
+      #floods img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+        margin-bottom: 15px;
+      }
+
+      #landslides iframe,
+      #hurricanes iframe,
+      #earthquakes iframe,
+      #wildfires iframe,
+      #floods iframe {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+
+      .iframe {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .iframe {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        #landslides img,
+        #hurricanes img,
+        #earthquakes img,
+        #wildfires img,
+        #floods img {
+          height: 40vh;
+        }
+
+        #landslides iframe,
+        #hurricanes iframe,
+        #earthquakes iframe,
+        #wildfires iframe,
+        #floods iframe {
+          height: 200px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .navbar-brand {
+          font-size: 24px;
+        }
+
+        section {
+          padding: 15px;
+        }
+
+        #landslides img,
+        #hurricanes img,
+        #earthquakes img,
+        #wildfires img,
+        #floods img {
+          height: 30vh;
+        }
+
+        #landslides iframe,
+        #hurricanes iframe,
+        #earthquakes iframe,
+        #wildfires iframe,
+        #floods iframe {
+          height: 150px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Suraksh</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span
+            class="navbar-toggler-icon"
+            style="
+              background-color: rgb(235, 213, 23);
+              padding: 12px;
+              border-radius: 10px;
+            "
+          ></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'histdata' %}"
+                >Historical Data</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'seekers' %}">Help Others</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'map' %}">Map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <label class="toggle-switch mb-0">
+                <input type="checkbox" id="theme-toggle" />
+                <span class="slider"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section id="landslides">
+        <img src="iStock-804402298.jpg" />
+        <div>
+          <h2><a href="landslide.html">Landslides</a></h2>
+          <p>
+            A landslide is a geological phenomenon that involves the movement of
+            rock, earth, or debris down a slope. Landslides can be triggered by
+            various factors, including natural causes like heavy rainfall,
+            earthquakes, volcanic activity, and erosion, or by human activities
+            such as deforestation, construction, and mining. The movement can be
+            sudden or gradual and can vary in scale from small slides to large,
+            catastrophic events that can cause significant damage to property
+            and loss of life.
+          </p>
+          <div class="iframe">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/DXUuRjAnspo?si=8CSWfg7p1GHV6Jfm"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/0IFP6tw9wZ0?si=GyqcJOx5dK32Jtsm"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+      <section id="hurricanes">
+        <img src="hurricanes.jpeg" />
+        <div>
+          <h2><a href="#">Hurricanes</a></h2>
+          <p>
+            A hurricane is a powerful tropical cyclone characterized by intense
+            winds, heavy rainfall, and thunderstorms. These storms form over
+            warm ocean waters and are classified by their sustained wind speeds.
+            Hurricanes are known for their circular, rotating structure with a
+            calm center known as the "eye," surrounded by a wall of violent
+            winds and rain.
+          </p>
+          <p>
+            Hurricanes can cause widespread destruction, including storm surges,
+            flooding, and high winds that damage buildings, infrastructure, and
+            natural landscapes. They are known by different names in different
+            regions, such as typhoons in the Western Pacific and cyclones in the
+            Indian Ocean.
+          </p>
+          <div class="iframe">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/mlYgZy90XjI?si=Tyj_6_aFbymjeevW"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/qxoK55bbNO8?si=wxJdtrHDhx0zyAU1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+      <section id="earthquakes">
+        <img src="earthquake2.jpg" />
+        <div>
+          <h2><a href="#">Earthquakes</a></h2>
+          <p>
+            An earthquake is a sudden and violent shaking of the ground caused
+            by the movement of tectonic plates beneath the Earth's surface. This
+            movement occurs along faults, which are fractures in the Earth's
+            crust. When stress builds up in these plates due to geological
+            forces, it can cause them to suddenly shift, releasing energy in the
+            form of seismic waves that travel through the Earth and cause the
+            ground to shake.
+          </p>
+          <p>
+            Earthquakes can range in intensity from minor tremors to devastating
+            events that can cause significant damage to buildings,
+            infrastructure, and landscapes, as well as trigger secondary hazards
+            like tsunamis and landslides. The point within the Earth where the
+            earthquake originates is called the focus, while the point directly
+            above it on the Earth's surface is known as the epicenter.
+          </p>
+          <div class="iframe">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/lq6zoScZP88?si=GgxwpDrKl5vvxviF"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/ATUyAZPdgBg?si=UKajfx9tv1Vyup_D"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+      <section id="wildfires">
+        <img src="wildfires2.jpg" />
+        <div>
+          <h2><a href="#">Wildfires</a></h2>
+          <p>
+            A wildfire is an uncontrolled fire that rapidly spreads through
+            vegetation, including forests, grasslands, and other natural areas.
+            Wildfires can ignite from natural causes, such as lightning strikes,
+            or from human activities, such as campfires, discarded cigarettes,
+            or intentional arson.
+          </p>
+          <p>
+            Once started, wildfires can quickly grow in size, driven by factors
+            such as dry conditions, high temperatures, wind, and the type of
+            vegetation present. They can cause widespread destruction,
+            threatening homes, wildlife, and ecosystems, and can be challenging
+            to control. Wildfires are a natural part of many ecosystems, playing
+            a role in nutrient cycling and habitat renewal, but they can become
+            catastrophic when they occur near populated areas.
+          </p>
+          <div class="iframe">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/9E6Q1rmhUj0?si=Q2HD3mrmBA9jOi9m"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/4w84XcQjzBA?si=I5L1OphMIQjF-xoa"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+      <section id="floods">
+        <img src="image.png" />
+        <div>
+          <h2><a href="#">Floods</a></h2>
+          <p>
+            A flood is an overflow of water onto land that is normally dry.
+            Floods can occur due to a variety of factors, including heavy
+            rainfall, rapid snowmelt, dam or levee breaches, storm surges from
+            hurricanes, and the obstruction of water flow in rivers and streams.
+          </p>
+          <p>
+            Floods can vary in severity from minor inundations that cause little
+            damage to major events that can devastate entire communities,
+            destroying homes, infrastructure, and agriculture. Flooding can also
+            lead to secondary effects such as landslides, contamination of water
+            supplies, and long-term disruptions to daily life and the economy.
+            Floods are one of the most common and widespread natural disasters
+            worldwide.
+          </p>
+          <div class="iframe">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/Q1C_tArrbJI?si=tL360BvN9vmHEYSj"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/nAb1oYZbbHw?si=x2cG38qo1LwNpNGK"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.getElementById("theme-toggle").addEventListener("change", () => {
+        document.body.classList.toggle("light-theme");
+      });
+    </script>
+  </body>
+</html>
